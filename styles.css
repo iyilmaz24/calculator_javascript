@@ -10,6 +10,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    font-family: 'Quicksand', 'Roboto', sans-serif;
 }
 
 #calculator-body{
@@ -20,7 +22,6 @@ body {
     background-color: #222021;
     border-radius: 16px;
     font-weight: 700;
-    font-family: 'Quicksand', 'Roboto', sans-serif;
 }
 
 #calculator-screen{
@@ -73,4 +74,9 @@ body {
 
 .extraWideButton {
     width: 130px;
+}
+
+#linkText {
+    margin-top: 75px;
+    font-family: 'Quicksand', 'Roboto', sans-serif;
 }
