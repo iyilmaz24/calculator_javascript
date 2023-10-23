@@ -69,11 +69,14 @@ body {
     font-size: 1.325rem;
     border: none;
     font-weight: 700;
-    border-radius: 75px;
+    border-radius: 100%;
+    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.5);
+    transition: all .15s ease-in-out;
 }
 
 #extraWideButton {
     width: 130px;
+    border-radius: 75px;
 }
 
 #linkText {
