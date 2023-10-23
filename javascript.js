@@ -7,7 +7,22 @@ window.addEventListener("DOMContentLoaded", () => {
     buttons = document.getElementsByClassName("buttonDisplay");
     for(let i = 0; i < buttons.length; i++){
         buttons[i].addEventListener("click", (event) => {
-            inputText.textContent += event.target.value
+            // can only start calculation with decimal operator or number
+            if(inputText.textContent.length === 0){
+                if(!(isNaN(event.target.value)) || event.target.value === "."){
+                    inputText.textContent += event.target.value
+                }
+            }
+            // if last input was decimal operator, do not allow input of another one
+            else if(inputText.textContent.slice(-1) === "."){
+                if(event.target.value !== "."){
+                    inputText.textContent += event.target.value
+                }
+            }
+            else{
+                inputText.textContent += event.target.value
+            }
+
         })
     }
 
@@ -24,9 +39,13 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     })
 
+    function calculate(inputString){
+        return inputString
+    }
+
     equalButton = document.getElementById("extraWideButton")
     equalButton.addEventListener("click", () => {
-        outputText.textContent = "insert result here"
+        outputText.textContent = calculate(inputText.textContent)
     })
 
 });
