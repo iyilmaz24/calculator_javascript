@@ -80,3 +80,19 @@ body {
     margin-top: 75px;
     font-family: 'Quicksand', 'Roboto', sans-serif;
 }
+
+.button:hover {
+    background-color: #787276;
+}
+
+#extraWideButton:hover {
+    background-color: green;
+}
+
+#ac-btn:hover, #del-btn:hover {
+    background-color: lightcoral;
+}
+
+.operator:hover {
+    background-color: #007FFF;
+}
