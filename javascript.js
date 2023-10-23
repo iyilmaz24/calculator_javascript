@@ -10,9 +10,24 @@ window.addEventListener("DOMContentLoaded", () => {
             inputText.textContent += event.target.value
         })
     }
-    equalButton = document.getElementById("extraWideButton")
+
     acButton = document.getElementById("ac-btn")
+    acButton.addEventListener("click", () => {
+        inputText.textContent = ""
+        outputText.textContent = ""
+    })
+
     delButton = document.getElementById("del-btn")
+    delButton.addEventListener("click", () => {
+        if(inputText.textContent.length > 0){
+            inputText.textContent = inputText.textContent.slice(0, -1)
+        }
+    })
+
+    equalButton = document.getElementById("extraWideButton")
+    equalButton.addEventListener("click", () => {
+        outputText.textContent = "insert result here"
+    })
 
 });
 
