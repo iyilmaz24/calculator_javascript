@@ -18,6 +18,7 @@ body {
     align-items: center;
     padding: 20px;
     background-color: #3E454B;
+    border-radius: 25px;
 
     border: red;
     border-width: 1px;
@@ -31,6 +32,10 @@ body {
     width: 300px;
     margin-bottom: 20px;
     background-color: #97978F;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+    
 
     border: red;
     border-width: 1px;
@@ -54,6 +59,11 @@ body {
     background-color: #787276;
     height: 50px;
     width: 60px;
+    font-weight: 700;
+    font-family: 'Quicksand', 'Roboto', sans-serif;
+    font-size: 1.325rem;
+    border: none;
+    border-radius: 75px;
 }
 
 .extraWideButton {
