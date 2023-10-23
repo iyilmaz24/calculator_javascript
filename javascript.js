@@ -34,11 +34,16 @@ window.addEventListener("DOMContentLoaded", () => {
 
     delButton = document.getElementById("del-btn")
     delButton.addEventListener("click", () => {
-        if(inputText.textContent.length > 0){
+        // if an operator is being deleted, we need to slice off last 3 chars
+        if(inputText.textContent.length > 0 && inputText.textContent.slice(-1) === " "){
+            inputText.textContent = inputText.textContent.slice(0, -3)
+        }
+        else{
             inputText.textContent = inputText.textContent.slice(0, -1)
         }
     })
 
+    // split by spaces to seperate operator and the left and right numbers
     function calculate(inputString){
         splitInput = inputString.split(" ")
         switch(splitInput[1]){
@@ -56,6 +61,7 @@ window.addEventListener("DOMContentLoaded", () => {
     equalButton = document.getElementById("extraWideButton")
     equalButton.addEventListener("click", () => {
         outputText.textContent = calculate(inputText.textContent)
+        inputText.textContent = ""
     })
 
 });
