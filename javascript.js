@@ -40,7 +40,17 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
     function calculate(inputString){
-        return inputString
+        splitInput = inputString.split(" ")
+        switch(splitInput[1]){
+            case "+":
+                return parseFloat(splitInput[0]) + parseFloat(splitInput[2])
+            case "-":
+                return parseFloat(splitInput[0]) - parseFloat(splitInput[2])
+            case "x":
+                return parseFloat(splitInput[0]) * parseFloat(splitInput[2])
+            case "/":
+                return parseFloat(splitInput[0]) / parseFloat(splitInput[2])
+        }
     }
 
     equalButton = document.getElementById("extraWideButton")
