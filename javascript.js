@@ -10,16 +10,9 @@ window.addEventListener("DOMContentLoaded", () => {
             inputText.textContent += event.target.value
         })
     }
-
     equalButton = document.getElementById("extraWideButton")
-
     acButton = document.getElementById("ac-btn")
-
-    cButton = document.getElementById("c-btn")
-
-    console.log(equalButton)
-    console.log(acButton)
-    console.log(cButton)
+    delButton = document.getElementById("del-btn")
 
 });
 
