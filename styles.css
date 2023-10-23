@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: #3E454B;
 
     border: red;
     border-width: 1px;
@@ -29,6 +30,7 @@ body {
     height: 75px;
     width: 300px;
     margin-bottom: 20px;
+    background-color: #97978F;
 
     border: red;
     border-width: 1px;
@@ -37,11 +39,11 @@ body {
 
 .row{
     display: flex;
-    padding: 10px;
+    padding: 5px;
     height: 50px;
-    width: 250px;
+    width: 275px;
     margin: 5px;
-    justify-content: space-evenly;
+    justify-content: space-between;
 
     border: red;
     border-width: 1px;
@@ -49,5 +51,11 @@ body {
 }
 
 .button {
-    background-color: blanchedalmond;
+    background-color: #787276;
+    height: 50px;
+    width: 60px;
+}
+
+.extraWideButton {
+    width: 130px;
 }
