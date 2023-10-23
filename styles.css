@@ -1,3 +1,39 @@
+/* https://louisem.com/421408/gray-hex-codes */
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
 body {
-    background-color: #BDB7AB
+    background-color: #bdb7ab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calculator-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: red;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#calculator-screen{
+    display: flex;
+
+    border: red;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.row{
+    display: flex;
+
+    border: red;
+    border-width: 1px;
+    border-style: solid;
 }
