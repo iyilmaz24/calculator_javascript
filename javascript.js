@@ -67,3 +67,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// add percentage sign button functionality ( num / 100)
+// limit to 1 operator per calculation
+// limit to one "." or "%" per side of operator
