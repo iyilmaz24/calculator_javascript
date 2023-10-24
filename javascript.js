@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 inputText.textContent += event.target.value
             }
         }
-        // only 1 operator per calculation
+        // only 1 operator per calculation, reset all event listeners after operator input
         else if(event.target.value in operators){
             removeListenerOperators()
             decimalButton.addEventListener("click", addInput)
@@ -54,6 +54,7 @@ window.addEventListener("DOMContentLoaded", () => {
             if(event.target.value === "."){
                 decimalButton.removeEventListener("click", addInput)
             }
+            // do not allowing typing of anything past "%" except operator if applicable
             else if(event.target.value === "%")
             {
                 percentButton.removeEventListener("click", addInput)
@@ -71,6 +72,7 @@ window.addEventListener("DOMContentLoaded", () => {
         buttons[i].addEventListener("click", addInput)
     }
 
+    // reset everything to default when AC button is clicked
     acButton = document.getElementById("ac-btn")
     acButton.addEventListener("click", () => {
         inputText.textContent = ""
