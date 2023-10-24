@@ -1,4 +1,12 @@
 
+
+// TO-DO LIST
+
+// do not allow typing of decimal or number past the percentage sign (remove and add event listeners)
+// reset specific event listeners when using arrow delete button
+
+
+
 window.addEventListener("DOMContentLoaded", () => {
 
     inputText = document.getElementById("inputText")
@@ -67,6 +75,9 @@ window.addEventListener("DOMContentLoaded", () => {
     acButton.addEventListener("click", () => {
         inputText.textContent = ""
         outputText.textContent = ""
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].addEventListener("click", addInput)
+        }
     })
 
     delButton = document.getElementById("del-btn")
@@ -116,9 +127,3 @@ window.addEventListener("DOMContentLoaded", () => {
     })
 
 });
-
-
-// do not allow typing of decimal or number past the percentage sign
-
-// reset all event listeners after using AC button
-// reset specific event listeners when using arrow delete button
