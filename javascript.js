@@ -4,26 +4,66 @@ window.addEventListener("DOMContentLoaded", () => {
     inputText = document.getElementById("inputText")
     outputText = document.getElementById("outputText")
 
-    buttons = document.getElementsByClassName("buttonDisplay");
-    for(let i = 0; i < buttons.length; i++){
-        buttons[i].addEventListener("click", (event) => {
-            // can only start calculation with decimal operator or number
-            if(inputText.textContent.length === 0){
-                if(!(isNaN(event.target.value)) || event.target.value === "."){
-                    inputText.textContent += event.target.value
-                }
-            }
-            // if last input was decimal operator, do not allow input of another one
-            else if(inputText.textContent.slice(-1) === "."){
-                if(event.target.value !== "."){
-                    inputText.textContent += event.target.value
-                }
-            }
-            else{
+    operatorButtons = document.getElementsByClassName("toggle")
+    percentDecimalButtons = document.getElementsByClassName("toggle2")
+
+    function removeListenerOperators(){
+        for(let i = 0; i < operatorButtons.length; i++){
+            operatorButtons[i].removeEventListener("click", addInput)
+        }
+    }
+
+    function addListenerOperators(){
+        for(let i = 0; i < operatorButtons.length; i++){
+            operatorButtons[i].addEventListener("click", addInput)
+        }
+    }
+
+    function removeListenerPercentDecimal(){
+        for(let i = 0; i < percentDecimalButtons.length; i++){
+            percentDecimalButtons[i].removeEventListener("click", addInput)
+        }
+    }
+
+    function addListenerPercentDecimal(){
+        for(let i = 0; i < percentDecimalButtons.length; i++){
+            percentDecimalButtons[i].addEventListener("click", addInput)
+        }
+    }
+    
+    operators = {
+        " x " : null,
+        " / ": null,
+        " + " : null,
+        " - ": null,
+    }
+
+    function addInput(event){
+        // can only start calculation with decimal operator or number
+        if(inputText.textContent.length === 0){
+            if(!(isNaN(event.target.value)) || event.target.value === "."){
                 inputText.textContent += event.target.value
             }
+        }
+        // only 1 operator per calculation
+        else if(event.target.value in operators){
+            removeListenerOperators()
+            inputText.textContent += event.target.value
+        }
+        // if last input was decimal operator, do not allow input of another one
+        else if(inputText.textContent.slice(-1) === "."){
+            if(event.target.value !== "."){
+                inputText.textContent += event.target.value
+            }
+        }
+        else{
+            inputText.textContent += event.target.value
+        }
+    } 
 
-        })
+    buttons = document.getElementsByClassName("buttonDisplay");
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener("click", addInput)
     }
 
     acButton = document.getElementById("ac-btn")
@@ -62,6 +102,7 @@ window.addEventListener("DOMContentLoaded", () => {
     equalButton.addEventListener("click", () => {
         outputText.textContent = calculate(inputText.textContent)
         inputText.textContent = ""
+        addListenerOperators()
     })
 
 });
