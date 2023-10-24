@@ -82,16 +82,27 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // split by spaces to seperate operator and the left and right side numbers
     function calculate(inputString){
-        splitInput = inputString.split(" ")
-        switch(splitInput[1]){
+        splitInput = inputString.split(" ") 
+        num1 = parseFloat(splitInput[0])
+        operator = splitInput[1]
+        num2 = parseFloat(splitInput[2])
+
+        if("%" === splitInput[0].slice(-1)){
+            num1 /= 100
+        }
+        if("%" === splitInput[2].slice(-1)){
+            num2 /= 100
+        }
+
+        switch(operator){
             case "+":
-                return parseFloat(splitInput[0]) + parseFloat(splitInput[2])
+                return num1 + num2
             case "-":
-                return parseFloat(splitInput[0]) - parseFloat(splitInput[2])
+                return num1 - num2
             case "x":
-                return parseFloat(splitInput[0]) * parseFloat(splitInput[2])
+                return num1 * num2
             case "/":
-                return parseFloat(splitInput[0]) / parseFloat(splitInput[2])
+                return num1 / num2
         }
     }
 
@@ -107,4 +118,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// add percentage sign button functionality ( num / 100)
+// do not allow typing of decimal or number past the percentage sign
+
+// reset all event listeners after using AC button
+// reset specific event listeners when using arrow delete button
