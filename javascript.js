@@ -1,11 +1,4 @@
 
-
-// TO-DO LIST
-
-// do not allow typing of decimal or number past the percentage sign (remove and add event listeners)
-
-
-
 window.addEventListener("DOMContentLoaded", () => {
 
     inputText = document.getElementById("inputText")
@@ -14,6 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     operatorButtons = document.getElementsByClassName("toggle")
     percentButton = document.getElementById("percent")
     decimalButton = document.getElementById("decimal")
+    numberButtons = document.getElementsByClassName("numberBtn")
 
     function removeListenerOperators(){
         for(let i = 0; i < operatorButtons.length; i++){
@@ -50,6 +44,9 @@ window.addEventListener("DOMContentLoaded", () => {
             removeListenerOperators()
             decimalButton.addEventListener("click", addInput)
             percentButton.addEventListener("click", addInput)
+            for(let i = 0; i < numberButtons.length; i++){
+                numberButtons[i].addEventListener("click", addInput)
+            }
             inputText.textContent += event.target.value
         }
         else{
@@ -60,6 +57,10 @@ window.addEventListener("DOMContentLoaded", () => {
             else if(event.target.value === "%")
             {
                 percentButton.removeEventListener("click", addInput)
+                decimalButton.removeEventListener("click", addInput)
+                for(let i = 0; i < numberButtons.length; i++){
+                    numberButtons[i].removeEventListener("click", addInput)
+                }
             }
             inputText.textContent += event.target.value
         }
@@ -93,6 +94,10 @@ window.addEventListener("DOMContentLoaded", () => {
         else if(inputText.textContent.length > 0 && inputText.textContent.slice(-1) === "%"){
             inputText.textContent = inputText.textContent.slice(0, -1)
             percentButton.addEventListener("click", addInput)
+            decimalButton.addEventListener("click", addInput)
+            for(let i = 0; i < numberButtons.length; i++){
+                numberButtons[i].addEventListener("click", addInput)
+            }
         }
         else{
             inputText.textContent = inputText.textContent.slice(0, -1)
