@@ -5,7 +5,8 @@ window.addEventListener("DOMContentLoaded", () => {
     outputText = document.getElementById("outputText")
 
     operatorButtons = document.getElementsByClassName("toggle")
-    percentDecimalButtons = document.getElementsByClassName("toggle2")
+    percentButton = document.getElementById("percent")
+    decimalButton = document.getElementById("decimal")
 
     function removeListenerOperators(){
         for(let i = 0; i < operatorButtons.length; i++){
@@ -16,18 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
     function addListenerOperators(){
         for(let i = 0; i < operatorButtons.length; i++){
             operatorButtons[i].addEventListener("click", addInput)
-        }
-    }
-
-    function removeListenerPercentDecimal(){
-        for(let i = 0; i < percentDecimalButtons.length; i++){
-            percentDecimalButtons[i].removeEventListener("click", addInput)
-        }
-    }
-
-    function addListenerPercentDecimal(){
-        for(let i = 0; i < percentDecimalButtons.length; i++){
-            percentDecimalButtons[i].addEventListener("click", addInput)
         }
     }
     
@@ -48,13 +37,13 @@ window.addEventListener("DOMContentLoaded", () => {
         // only 1 operator per calculation
         else if(event.target.value in operators){
             removeListenerOperators()
+            addListenerPercentDecimal()
             inputText.textContent += event.target.value
         }
-        // if last input was decimal operator, do not allow input of another one
-        else if(inputText.textContent.slice(-1) === "."){
-            if(event.target.value !== "."){
-                inputText.textContent += event.target.value
-            }
+        // only allow 1 percent or decimal per side of operator
+        else if(event.target.value === "." || event.target.value === "%"){
+            removeListenerPercentDecimal()
+            inputText.textContent += event.target.value
         }
         else{
             inputText.textContent += event.target.value
@@ -103,11 +92,11 @@ window.addEventListener("DOMContentLoaded", () => {
         outputText.textContent = calculate(inputText.textContent)
         inputText.textContent = ""
         addListenerOperators()
+        addListenerPercentDecimal()
     })
 
 });
 
 
 // add percentage sign button functionality ( num / 100)
-// limit to 1 operator per calculation
 // limit to one "." or "%" per side of operator
