@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     inputText = document.getElementById("inputText")
     outputText = document.getElementById("outputText")
-
+    
     operatorButtons = document.getElementsByClassName("toggle")
     percentButton = document.getElementById("percent")
     decimalButton = document.getElementById("decimal")
@@ -31,21 +31,29 @@ window.addEventListener("DOMContentLoaded", () => {
         // can only start calculation with decimal operator or number
         if(inputText.textContent.length === 0){
             if(!(isNaN(event.target.value)) || event.target.value === "."){
+                // catch edge case, only 1 decimal per side of operator
+                if(event.target.value === "."){
+                    decimalButton.removeEventListener("click", addInput)
+                }
                 inputText.textContent += event.target.value
             }
         }
         // only 1 operator per calculation
         else if(event.target.value in operators){
             removeListenerOperators()
-            addListenerPercentDecimal()
-            inputText.textContent += event.target.value
-        }
-        // only allow 1 percent or decimal per side of operator
-        else if(event.target.value === "." || event.target.value === "%"){
-            removeListenerPercentDecimal()
+            decimalButton.addEventListener("click", addInput)
+            percentButton.addEventListener("click", addInput)
             inputText.textContent += event.target.value
         }
         else{
+            // only allow 1 percent or decimal per side of operator
+            if(event.target.value === "."){
+                decimalButton.removeEventListener("click", addInput)
+            }
+            else if(event.target.value === "%")
+            {
+                percentButton.removeEventListener("click", addInput)
+            }
             inputText.textContent += event.target.value
         }
     } 
@@ -72,7 +80,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    // split by spaces to seperate operator and the left and right numbers
+    // split by spaces to seperate operator and the left and right side numbers
     function calculate(inputString){
         splitInput = inputString.split(" ")
         switch(splitInput[1]){
@@ -92,11 +100,11 @@ window.addEventListener("DOMContentLoaded", () => {
         outputText.textContent = calculate(inputText.textContent)
         inputText.textContent = ""
         addListenerOperators()
-        addListenerPercentDecimal()
+        decimalButton.addEventListener("click", addInput)
+        percentButton.addEventListener("click", addInput)
     })
 
 });
 
 
 // add percentage sign button functionality ( num / 100)
-// limit to one "." or "%" per side of operator
