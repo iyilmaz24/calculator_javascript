@@ -3,7 +3,6 @@
 // TO-DO LIST
 
 // do not allow typing of decimal or number past the percentage sign (remove and add event listeners)
-// reset specific event listeners when using arrow delete button
 
 
 
@@ -85,6 +84,15 @@ window.addEventListener("DOMContentLoaded", () => {
         // if an operator is being deleted, we need to slice off last 3 chars
         if(inputText.textContent.length > 0 && inputText.textContent.slice(-1) === " "){
             inputText.textContent = inputText.textContent.slice(0, -3)
+            addListenerOperators()
+        }
+        else if(inputText.textContent.length > 0 && inputText.textContent.slice(-1) === "."){
+            inputText.textContent = inputText.textContent.slice(0, -1)
+            decimalButton.addEventListener("click", addInput)
+        }
+        else if(inputText.textContent.length > 0 && inputText.textContent.slice(-1) === "%"){
+            inputText.textContent = inputText.textContent.slice(0, -1)
+            percentButton.addEventListener("click", addInput)
         }
         else{
             inputText.textContent = inputText.textContent.slice(0, -1)
@@ -121,9 +129,9 @@ window.addEventListener("DOMContentLoaded", () => {
     equalButton.addEventListener("click", () => {
         outputText.textContent = calculate(inputText.textContent)
         inputText.textContent = ""
-        addListenerOperators()
-        decimalButton.addEventListener("click", addInput)
-        percentButton.addEventListener("click", addInput)
+        for(let i = 0; i < buttons.length; i++){
+            buttons[i].addEventListener("click", addInput)
+        }
     })
 
 });
